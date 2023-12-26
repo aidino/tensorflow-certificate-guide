@@ -246,6 +246,43 @@ G_squeezed = tf.squeeze(G)
 G_squeezed.shape # TensorShape([50])
 G_squeezed.ndim # 1
 ```
+
+- **One-hot encoding**
+
+```python
+list = [1, 2, 3, 4]
+tf.one_hot(list, depth=4)
+# array([[0., 1., 0., 0.],
+#        [0., 0., 1., 0.],
+#        [0., 0., 0., 1.],
+#        [0., 0., 0., 0.]], dtype=float32)>
+
+tf.one_hot(list, depth=4, on_value="we've live", off_value="offline")
+# array([[b'offline', b"we've live", b'offline', b'offline'],
+#        [b'offline', b'offline', b"we've live", b'offline'],
+#        [b'offline', b'offline', b'offline', b"we've live"],
+#        [b'offline', b'offline', b'offline', b'offline']], dtype=object)>
+```
+
+- **Squaring, log, square root**
+```python
+tensor = tf.constant(np.arange(1, 10, 1))
+# <tf.Tensor: shape=(9,), dtype=int64, numpy=array([1, 2, 3, 4, 5, 6, 7, 8, 9])>
+squared = tf.square(tensor)
+# <tf.Tensor: shape=(9,), dtype=int64, numpy=array([ 1,  4,  9, 16, 25, 36, 49, 64, 81])>
+squared = tf.cast(squared, dtype=tf.float32)
+# <tf.Tensor: shape=(9,), dtype=float32, numpy=array([1., 2., 3., 4., 5., 6., 7., 8., 9.], dtype=float32)>
+tf.sqrt(squared)
+# <tf.Tensor: shape=(9,), dtype=float32, 
+# numpy=array([1., 2., 3., 4., 5., 6., 7., 8., 9.], dtype=float32)>
+tf.math.log(squared)
+# array([0.       , 1.3862944, 2.1972246, 2.7725887, 3.218876 , 3.583519 ,
+#        3.8918204, 4.158883 , 4.394449 ], dtype=float32)>
+
+
+```
+
+
 ### Tensorflow regression
 
 ### Tensorflow classification
