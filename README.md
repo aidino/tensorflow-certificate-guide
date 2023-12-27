@@ -281,7 +281,43 @@ tf.math.log(squared)
 
 
 ```
+- **Manipulating the `tf.Variable` tensor**
 
+```python
+tensor = tf.Variable(np.arange(1, 5)) # [1, 2, ,3, 4]
+tensor.assign([5, 6, 7, 8]) # [5, 6, 7, 8]
+tensor.assign_add([10, 10, 10, 10]) # [15, 16, 17, 18]
+```
+- **Tensors and Numpy**
+```python
+# Create tensor from numpy
+tensor = tf.constant(np.array([1, 2, 3,4]))
+
+# Numpy from tensor
+np_array = np.array(tensor)
+```
+
+- **`@tf.function`**
+
+`@tf.function` là một decorator trong TensorFlow, được sử dụng để tối ưu hóa hiệu suất của các hàm Python bằng cách chuyển đổi chúng thành các đồ thị tính toán được biên dịch sử dụng TensorFlow. 
+Điều này giúp tăng tốc độ thực thi của chương trình và làm cho các phần mềm sử dụng thư viện TensorFlow chạy nhanh hơn.
+
+Khi bạn đánh dấu một hàm Python bằng `@tf.function`, TensorFlow sẽ tự động tạo ra một biểu đồ tính toán dựa trên các phép toán trong hàm. 
+Biểu đồ này sau đó có thể được tối ưu hóa và biên dịch để chạy trực tiếp trên thiết bị phần cứng, thường là **GPU** hoặc **TPU**, để tăng tốc độ thực thi.
+
+```python
+@tf.function
+def tf_function(x, y):
+    return x ** 2 + y
+```
+- **Finding access to GPUs**
+```python
+print(tf.config.list_physical_devices('GPU'))
+```
+
+```bash
+!nvidia-smi
+```
 
 ### Tensorflow regression
 
